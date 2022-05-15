@@ -591,7 +591,7 @@
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>nama</h4>
+                <h4>menunggu update</h4>
                 <span>Ketua</span>
                 <p></p>
                 <div class="social">
@@ -608,7 +608,7 @@
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>nama</h4>
+                <h4>menunggu update</h4>
                 <span>wakil</span>
                 <p></p>
                 <div class="social">
@@ -625,9 +625,9 @@
             <div class="member d-flex align-items-start">
               <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
               <div class="member-info">
-                <h4>nama</h4>
+                <h4>menunggu update</h4>
                 <span>bendahara</span>
-                <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                <p></p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
@@ -735,6 +735,7 @@
 
         <div class="section-title">
           <h2>Jadwal Latihan & Gabungan</h2>
+          <p>menunggu update</p>
         </div>
 
         <!-- <div class="faq-list">
@@ -811,13 +812,13 @@
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>pagarnusa86.pandeglang@gmail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>6281312312</p>
+                <p>menunggu update</p>
               </div>
 
             </div>
@@ -826,27 +827,37 @@
 
           <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-delay="100">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <div class="col-lg-8 mt-5 mt-lg-0">
+              <div class="alert alert-warning alert-dismissible fade show d-none my-alert" role="alert">
+                <strong>terimakasih..</strong> pesanmu sudah kami terima.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+
+            <form class="php-email-form" name="pn">
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  <input type="text" name="nama" class="form-control" id="name" placeholder="nama" required>
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="text" class="form-control" name="hp" id="email" placeholder="hp/wa" required>
                 </div>
               </div>
               <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                <input type="text" class="form-control" name="judul" id="subject" placeholder="judul" required>
               </div>
               <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" name="pesan" rows="5" placeholder="pesan" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
+                <!-- <div class="loading">Loading</div>
                 <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="sent-message">Your message has been sent. Thank you!</div> -->
               </div>
-              <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="text-center"><button type="submit" class="btn-kirim">Send Message</button></div>
+              <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                  Loading...
+              </button>
             </form>
 
           </div>
@@ -959,6 +970,30 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwQREO4jphp8Mih2zqa3SOlvp8EECQSzWS80itLnh9p5tBaShx2SKSsm60JDSOjF69B/exec'
+  const form = document.forms['pn']
+  const btnKirim = document.querySelector('.btn-kirim');
+  const btnLoading = document.querySelector('.btn-loading');
+  const myAlert = document.querySelector('.my-alert');
+  
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    btnLoading.classList.toggle('d-none');
+    btnKirim.classList.toggle('d-none');
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+        btnLoading.classList.toggle('d-none');
+    btnKirim.classList.toggle('d-none');
+        myAlert.classList.toggle('d-none');
+        form.reset();
+        console.log('Success!', response)
+      })
+      .catch(error => console.error('Error!', error.message))
+  });
+  </script>
 
 </body>
 
